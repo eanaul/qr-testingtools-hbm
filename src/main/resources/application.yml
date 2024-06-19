@@ -1,0 +1,52 @@
+server:
+  port: 8086
+
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB
+      max-request-size: 2MB
+  banner:
+    location: banner.txt
+  application:
+    name: qris-testingtools
+  datasource:
+    username: 'reyhanau'
+    password: 'password'
+    url: jdbc:postgresql://localhost:5432/QRISTESTINGTOOLS
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+        session:
+          events:
+            log:
+              LOG_QUERIES_SLOWER_THAN_MS: 1000
+    hibernate:
+      ddl-auto: update
+    show-sql: 'false'
+    open-in-view: 'true'
+  sleuth:
+    sampler:
+      probability: 1.0
+  kafka:
+    bootstrap-servers: 192.168.0.132:29092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+token:
+  secret: '[a-zA-Z0-9._]^+$Guidelines89797987forAlphabeticalArraNumeralsandOtherSymbo$'
+
+eureka:
+  instance:
+    prefer-ip-address: true # Mengubah preferensi alamat IP menjadi false
+  client:
+    enabled: true # Menonaktifkan Eureka Client
+    service-url:
+      defaultZone: http://192.168.0.132:8761/eureka # Menghapus atau mengosongkan URL defaultZone
+#logging:
+#  level:
+#    org.hibernate.sql: DEBUG
